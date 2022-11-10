@@ -12,6 +12,37 @@
     #11101d 91.61%
   );
   --card-shadow: 0px 20px 100px -10px rgba(66, 71, 91, 0.1);
+  
+  --bg-red-gradient:linear-gradient(
+    157.81deg,
+    #fadede -43.27%,
+    #f5bebe -21.24%,
+    #f09d9d 12.19%,
+    #eb7d7d 29.82%,
+    #e65c5c 51.94%,
+    #cf3333 90.29%
+  );
+
+  --text-blue-gradient: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #deedfa 0.89%,
+    #bedaf5 17.23%,
+    #9dc9f0 42.04%,
+    #7db4eb 55.12%,
+    #5c8ce6 71.54%,
+    #3377cf 100%
+  );
+
+  --bg-blue-gradient: linear-gradient(
+    157.81deg,
+    #def2fa -43.27%,
+    #bee5f5 -21.24%,
+    #9dd7f0 12.19%,
+    #7dc1eb 29.82%,
+    #5cb6e6 51.94%,
+    #3398cf 90.29%
+  );
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,19 +59,70 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0px;
 }
 
+h1, h2, h3, h4, h5, h6, p, span, div {
+  color: white;
+  cursor: default;
+}
 
-.text-gradient {
+img {
+  user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+
+.text-blue-gradient {
+  background: var(--text-blue-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.bg-blue-gradient {
+  background: var(--bg-blue-gradient);
+}
+
+.break {
+  flex-basis: 100%;
+  height: 0;
+}
+
+#card-container > div:nth-of-type(even) > div {
+  background: var(--bg-red-gradient);
+}
+#card-container > div:nth-of-type(even) > h2 {
   background: radial-gradient(
     64.18% 64.18% at 71.16% 35.69%,
-    #def9fa 0.89%,
-    #bef3f5 17.23%,
-    #9dedf0 42.04%,
-    #7de7eb 55.12%,
-    #5ce1e6 71.54%,
-    #33bbcf 100%
+    #fadede 0.89%,
+    #f5bebe 17.23%,
+    #f09d9d 42.04%,
+    #eb7d7d 55.12%,
+    #e65c5c 71.54%,
+    #cf3333 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
+}
+.margin-between-cards {
+  margin: 10px 20px;
+}
+.margin-between-cards:first-of-type {
+  margin: 10px 0px;
+}
+.margin-between-cards:nth-of-type(3n + 3) {
+  margin: 10px 0px;
+}
+.margin-between-cards:nth-of-type(3n + 1) {
+  margin: 10px 0px;
+}
+.card-hr {
+  width: calc(100% + 48px);
+  transform: translateX(-24px);
+  margin-top: 20px;
 }
