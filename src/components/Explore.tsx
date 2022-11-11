@@ -145,13 +145,13 @@ const catalogue = [
 
 const Explore = () => (
     <div className="mt-32 w-full">
-        <div>
+        <div> {/* Div used as wrapper for p if there would ever be other children such as filter */}
             <p className="text-dimText uppercase font-bold">Explore catalogue (<span>{catalogue.length}</span>)</p>
         </div>
         <br />
         <div id="card-container" className="flex items-start justify-between flex-wrap">
             {catalogue.map((entry, index) => (
-                <Card key={index} img={`../src/assets/sort_icon_${/* index+ */1}.svg`} title={entry.name} content={entry.content} animated={entry.animated} />
+                <Card key={index} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={entry.name} content={entry.content} animated={entry.animated} />
             ))}
         </div>
         <button>Show more</button>
