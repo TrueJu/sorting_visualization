@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 type CardProps = {
     img: string,
     title: string,
@@ -143,20 +145,40 @@ const catalogue = [
     }
 ];
 
-const Explore = () => (
-    <div className="mt-32 w-full">
-        <div> {/* Div used as wrapper for p if there would ever be other children such as filter */}
-            <p className="text-dimText uppercase font-bold">Explore catalogue (<span>{catalogue.length}</span>)</p>
+const Explore = () => {
+    // Init cardList
+    const initialCardListLength = 3;
+    var initialCardList = [];
+
+    for(var i=0;i<initialCardListLength;i++) {
+        initialCardList.push(<Card key={i} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={catalogue[i].name} content={catalogue[i].content} animated={catalogue[i].animated} />);
+    }
+
+    const [cardList, setCardList] = useState([...initialCardList]);
+
+    const onExpandCardListClick = event => {
+        var tmpCardList = [];
+
+        for(var i=initialCardListLength;i<catalogue.length;i++) {
+            tmpCardList.push(<Card key={i} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={catalogue[i].name} content={catalogue[i].content} animated={catalogue[i].animated} />);
+        }
+
+        setCardList([...cardList, ...tmpCardList]);
+    };
+
+    return (
+        <div className="mt-32 w-full">
+            <div> {/* Div used as wrapper for p if there would ever be other children such as filter */}
+                <p className="text-dimText uppercase font-bold">Explore catalogue (<span>{cardList.length}</span>)</p>
+            </div>
+            <br />
+            <div id="card-container" className="flex items-start justify-between flex-wrap">
+                { cardList }
+            </div>
+            <button onClick={onExpandCardListClick}>Show more</button>
         </div>
-        <br />
-        <div id="card-container" className="flex items-start justify-between flex-wrap">
-            {catalogue.map((entry, index) => (
-                <Card key={index} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={entry.name} content={entry.content} animated={entry.animated} />
-            ))}
-        </div>
-        <button>Show more</button>
-    </div>
-)
+    )
+}
 
 const Card = ({ img, title="default", content="default", animated=false }:CardProps) =>
     <div className="shadow-xl shadow-[#ffffff09] overflow-hidden border-[1px] rounded-xl xs:w-full ss:w-60 sm:w-72 xsm:w-96 md:w-[400px] xmd:w-80 p-6 pb-3 mt-5 cursor-pointer hover:bg-[#ffffff03] group transition-all">
