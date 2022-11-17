@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build --base=https://trueju.github.io/sorting_visualization/",
+    "build": "tsc && vite build --base=/sorting_visualization/dist/",
     "preview": "vite preview"
   },
   "dependencies": {
