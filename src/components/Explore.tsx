@@ -201,7 +201,13 @@ const Card = ({ img, title="default", content="default", animated=false }:CardPr
         {/* <p className="text-green-500 w-full font-bold text-[8px] -mb-[28px] text-right -translate-y-[98px] translate-x-8 rotate-[30deg]">{animated ? "Animated" : ""}</p> */}
         <p className="mt-9 cursor-pointer">{content}</p>
         <hr className="card-hr" />
-        <button className="pt-3 group-hover:font-bold group-hover:ml-[50%] group-hover:-translate-x-1/2 transition-all ease-out duration-500">Check it out!</button>
+        <button onClick={() => { 
+            document.getElementById("algorithmSearchInput").value = title; 
+            
+            const changeEvent = new Event('change', { bubbles: true });
+            document.getElementById("algorithmSearchInput").dispatchEvent(changeEvent);
+            
+            }} className="pt-3 group-hover:font-bold group-hover:ml-[50%] group-hover:-translate-x-1/2 transition-all ease-out duration-500">Check it out!</button>
     </div>;
 
 export default Explore
