@@ -148,9 +148,9 @@ const catalogue = [
 const Explore = () => {
     // Create array of JSX.Elements to initialize the explore section
     const initialCardListLength = 3;
-    var initialCardList = [];
+    const initialCardList = [];
 
-    for(var i=0;i<initialCardListLength;i++) {
+    for(let i=0;i<initialCardListLength;i++) {
         initialCardList.push(<Card key={i} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={catalogue[i].name} content={catalogue[i].content} animated={catalogue[i].animated} />);
     }
 
@@ -158,11 +158,11 @@ const Explore = () => {
     const [isCardListExpanded, setIsCardListExpanded] = useState(false);
 
     const toggleCardListExpand = () => {
-        var tmpCardList = [];
+        const tmpCardList = [];
 
         if(!isCardListExpanded) {
             // Add every catalogue entry which is not yet part of the cardList to the cardList using setCardList
-            for(var i=initialCardListLength;i<catalogue.length;i++) {
+            for(let i=initialCardListLength;i<catalogue.length;i++) {
                 tmpCardList.push(<Card key={i} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={catalogue[i].name} content={catalogue[i].content} animated={catalogue[i].animated} />);
             }
 
@@ -170,7 +170,7 @@ const Explore = () => {
             setIsCardListExpanded(true); // set isCardListExpandet to true - used to toggle "show more / less" btn
         } else {
             // Reinitialize the cardList to only show the startup cards
-            for(var i=0;i<initialCardListLength;i++) {
+            for(let i=0;i<initialCardListLength;i++) {
                 tmpCardList.push(<Card key={i} img={`../src/assets/sort_icon_${/* index + */1}.svg`} title={catalogue[i].name} content={catalogue[i].content} animated={catalogue[i].animated} />);
             }
 
@@ -188,7 +188,7 @@ const Explore = () => {
             <div id="card-container" className="flex items-start justify-between flex-wrap">
                 { cardList }
             </div>
-            <button onClick={toggleCardListExpand} className="mt-8 text-dimText hover:text-white transition-all">{ isCardListExpanded ? "Show less" : "Show more" }</button>
+            <button onClick={toggleCardListExpand} className="mt-8 text-dimText hover:text-white transition-all ss:text-left w-full">{ isCardListExpanded ? "Show less" : "Show more" }</button>
         </div>
     )
 }
