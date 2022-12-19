@@ -33,6 +33,16 @@
     #3377cf 100%
   );
 
+  --text-red-gradient: radial-gradient(
+    64.18% 64.18% at 71.16% 35.69%,
+    #fadede 0.89%,
+    #f5bebe 17.23%,
+    #f09d9d 42.04%,
+    #eb7d7d 55.12%,
+    #e65c5c 71.54%,
+    #cf3333 100%
+  );
+
   --bg-blue-gradient: linear-gradient(
     157.81deg,
     #def2fa -43.27%,
@@ -73,6 +83,13 @@ img {
     -ms-user-select: none;
 }
 
+.text-red-gradient {
+  background: var(--text-red-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
 
 .text-blue-gradient {
   background: var(--text-blue-gradient);
@@ -113,4 +130,10 @@ img {
   width: calc(100% + 48px);
   transform: translateX(-24px);
   margin-top: 20px;
+}
+
+.data-blocks {
+  background-color: #00b862;
+  color: rgb(0, 0, 0);
+  transition: 0.5s ease-in-out;
 }
