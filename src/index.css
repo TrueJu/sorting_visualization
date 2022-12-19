@@ -135,5 +135,6 @@ img {
 .data-blocks {
   background-color: #00b862;
   color: rgb(0, 0, 0);
-  transition: 0.5s ease-in-out;
+  transition: 0.6s;
+  animation-timing-function: cubic-bezier(.56,.38,0,1.01);
 }
