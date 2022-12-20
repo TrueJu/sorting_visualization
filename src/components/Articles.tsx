@@ -46,70 +46,67 @@ console.log(sortedArray);  // Output: [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `f
     return arr
 }
 
-val sortedArray = bubbleSort(intArrayOf(5, 2, 1, 4, 3))
-println(sortedArray.joinToString())  // Output: [1, 2, 3, 4, 5]`], ["Java", "java", `import java.util.Arrays;
-...
-public static int[] bubbleSort(int[] arr) {
-    for (int i = 0; i < arr.length; i++) {
-        for (int j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                // Swap the elements
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+fun main() {
+    val sortedArray = bubbleSort(intArrayOf(5, 2, 1, 4, 3))
+    println(sortedArray.joinToString())  // Output: [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.Arrays;
+
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap the elements
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
             }
         }
     }
-    return arr;
-}
 
-int[] sortedArray = bubbleSort(new int[] {5, 2, 1, 4, 3});
-System.out.println(Arrays.toString(sortedArray));  // Output: [1, 2, 3, 4, 5]`], ["Python", "phython", `def bubble_sort(arr):
-    for i in range(len(arr)):
-        for j in range(len(arr) - i - 1):
-            if arr[j] > arr[j + 1]:
-                # Swap the elements
-                temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
-    return arr
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 1, 4, 3};
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+}`], ["C#", "csharp", `using System;
 
-sorted_array = bubble_sort([5, 2, 1, 4, 3])
-print(sorted_array)  # Output: [1, 2, 3, 4, 5]`], ["C#", "csharp", `public static int[] BubbleSort(int[] arr)
-{
-    for (int i = 0; i < arr.Length; i++)
-    {
-        for (int j = 0; j < arr.Length - i - 1; j++)
-        {
-            if (arr[j] > arr[j + 1])
-            {
-                // Swap the elements
-                int temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+public class Bubblesort {
+    static void Main(string[] args) {
+        int[] arr = { 5, 2, 1, 4, 3 };
+        bubbleSort(arr);
+        Console.WriteLine(string.Join(", ", arr));  // Output: 1, 2, 3, 4, 5
+    }
+
+    static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.Length; i++) {
+            for (int j = 0; j < arr.Length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap the elements
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
             }
         }
     }
-    return arr;
-}
-
-int[] sortedArray = BubbleSort(new int[] { 5, 2, 1, 4, 3 });
-Console.WriteLine(string.Join(", ", sortedArray));  // Output: 1, 2, 3, 4, 5`], ["Rust", "rust", `fn bubble_sort(arr: &mut [i32]) {
+}`], ["Rust", "rust", `fn bubble_sort(arr: &mut [i32]) {
     for i in 0..arr.len() {
         for j in 0..arr.len() - i - 1 {
             if arr[j] > arr[j + 1] {
                 // Swap the elements
-                let temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
+                arr.swap(j, j + 1);
             }
         }
     }
 }
 
-let mut sorted_array = [5, 2, 1, 4, 3];
-bubble_sort(&mut sorted_array);
-println!("{:?}", sorted_array);  // Output: [1, 2, 3, 4, 5]`], ["Perl", "perl", `sub bubble_sort {
+fn main() {
+    let mut arr = [5, 2, 1, 4, 3];
+    bubble_sort(&mut arr);
+    println!("{:?}", arr);  // Output: [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub bubble_sort {
     my @arr = @_;
     for my $i (0..$#arr) {
         for my $j (0..$#arr - $i - 1) {
@@ -131,43 +128,206 @@ print "@sorted_array\\n";  # Output: 1 2 3 4 5`]],
         "animationScript": "bubblesort",
         "animationElement": <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
             <div className="w-[445px] h-[48px]">
-                <div id="1" data-pos="0" data-translate="0" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">1</div>
-                <div id="8" data-pos="1" data-translate="75" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">8</div>
-                <div id="4" data-pos="2" data-translate="150" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">4</div>
-                <div id="6" data-pos="3" data-translate="225" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">6</div>
-                <div id="3" data-pos="4" data-translate="300" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">3</div>
-                <div id="9" data-pos="5" data-translate="375" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">9</div>
+                <div data-pos="0" data-translate="0" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">1</div>
+                <div data-pos="1" data-translate="75" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">8</div>
+                <div data-pos="2" data-translate="150" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">4</div>
+                <div data-pos="3" data-translate="225" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">9</div>
+                <div data-pos="4" data-translate="300" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">6</div>
+                <div data-pos="5" data-translate="375" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">3</div>
             </div>
         </div>
     },
     {
-        "title": "merge sort",
-        "description": "test content 2",
-        "sourceCodes": [["Javascript", "javascript", "var jhdf = 10;<br>run();"], ["Kotlin", "kotlin", "var jhdf = 33;<br>run();"], ["C#", "csharp", "var jhdf = 23;<br>run();"]],
-        "timeAndSpace": ["1", "n^2", "n^2", "n"],
-        "id": "2",
-        "animationScript": "bubblesort",
-        animationElement: <div>animation el</div>
-    },
-    {
-        "title": "merge sort quick",
-        "description": "test content 3",
-        "sourceCodes": [["Javascript", "javascript", "var jhdf = 10;<br>run();"], ["Kotlin", "kotlin", "var jhdf = 33;<br>run();"]],
-        "timeAndSpace": ["1", "n^2", "n^2", "n"],
-        "id": "3",
-        "animationScript": "bubblesort",
-        animationElement: <div>animation el</div>
-    },
-    {
-        "title": "heap sort",
-        "description": "test content 4",
-        "sourceCodes": [["Javascript", "javascript", "var jhdf = 10;<br>run();"], ["Kotlin", "kotlin", "var jhdf = 33;<br>run();"]],
-        "timeAndSpace": ["1", "n^2", "n^2", "n"],
-        "id": "3",
-        "animationScript": "bubblesort",
-        animationElement: <div>animation el</div>
+        "title": "Quicksort",
+        "description": `Quicksort is a divide and conquer algorithm that is used for sorting a list of items. It works by selecting a pivot element from the list and partitioning the other elements into two sublists based on whether they are less than or greater than the pivot. The sublists are then recursively sorted using the same process. The pivot element is then placed in its correct position in the sorted list.\n
+Quicksort has a time complexity of O(n log n), making it more efficient than other sorting algorithms such as bubble sort and insertion sort. It is also an in-place sorting algorithm, meaning it does not require additional memory to sort the list.\n
+Quicksort is a popular choice for sorting due to its simplicity and efficiency. However, it can be less efficient in certain cases, such as when the list is already sorted or when the pivot element is not chosen optimally. In these cases, the algorithm can degrade to O(n^2) time complexity.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
     }
-];
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort
+{
+    public static List<int> Quicksort(List<int> array)
+    {
+        if (array.Count <= 1)
+        {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++)
+        {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else
+            {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args)
+    {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "2",
+        "animationScript": "quicksort",
+        "animationElement": <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
+            <div className="w-[445px] h-[48px]">
+                <div data-pos="0" data-translate="0" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">1</div>
+                <div data-pos="1" data-translate="75" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">8</div>
+                <div data-pos="2" data-translate="150" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">4</div>
+                <div data-pos="3" data-translate="225" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">9</div>
+                <div data-pos="4" data-translate="300" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">6</div>
+                <div data-pos="5" data-translate="375" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">3</div>
+            </div>
+        </div>
+    }];
 
 const Articles = () => {
     const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} animationElement={articles[0].animationElement} />);
@@ -268,6 +428,81 @@ function bubbleSort() {
         }
     }, (dataBlocks.length + 1) * 600);
 }
+
+function quickSort() {
+    const good_check_color = "#00a716";
+    const currently_checking_color = "#e80f1b";
+    const default_color = "#00b862";
+
+    const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
+    const dataBlocks:any = [0,1,2,3,4,5];
+
+    for(let i=0;i<dataBlockElements.length;i++) {
+        dataBlocks[parseInt(`${dataBlockElements[i].dataset.pos}`)] = dataBlockElements[i];
+    }
+
+    let flawless = true;
+
+    for(let i=0;i<dataBlocks.length;i++) {
+        flawless = true;
+
+        setTimeout(async () => {
+            let datablock = dataBlocks[i];
+
+            if(i!==dataBlocks.length-1) {
+                let next_datablock = dataBlocks[i+1];
+
+                datablock.style.backgroundColor = currently_checking_color;
+
+                await new Promise(resolve => setTimeout(resolve, 400));
+                
+                if(parseInt(datablock.innerHTML) > parseInt(next_datablock.innerHTML)) {
+                    flawless = false;
+
+                    let translate1 = dataBlocks[i].dataset.translate;
+                    let translate2 = dataBlocks[i+1].dataset.translate;
+
+                    datablock.style.transform = `translateX(${translate2}px)`;
+                    datablock.setAttribute("data-pos", `${i+1}`);
+                    datablock.setAttribute("data-translate", translate2);
+
+                    next_datablock.style.transform = `translateX(${translate1}px)`;
+                    next_datablock.setAttribute("data-pos", `${i}`);
+                    next_datablock.setAttribute("data-translate", translate1);
+                    
+
+                    datablock.style.backgroundColor = i===dataBlocks.length-2 ? good_check_color : default_color;
+
+
+                    for(let i=0;i<dataBlockElements.length;i++) {
+                        dataBlocks[parseInt(`${dataBlockElements[i].dataset.pos}`)] = dataBlockElements[i];
+                    }
+                    i--
+                } else {
+                    datablock.style.backgroundColor = good_check_color;
+                }
+            } else {
+                datablock.style.backgroundColor = good_check_color;
+            }
+        }, i * 600)
+    }
+
+    setTimeout(() => {
+        if(!flawless) {
+            quickSort();
+        } else {
+            //finished
+            document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
+            document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+
+            updateAnimation = true;
+
+            for(let i=0;i<dataBlockElements.length;i++) {
+                dataBlockElements[i].style.backgroundColor = default_color;
+            }
+        }
+    }, (dataBlocks.length + 1) * 600);
+}
   
 
 const Article = ({ title="default", description="...", animationScript, sourceCodes=[], timeAndSpace, id, animationElement }:articleProps) => {
@@ -285,12 +520,14 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
         }
     });
 
+    updateAnimation = false;
+
     return(
         <div className="  w-full" id={id}>
             <h2 className={`text-3xl cursor-pointer text-${Math.floor(Math.random() * (2 - 1 + 1) + 1) == 1 ? 'red' : 'blue'}-gradient font-bold w-fit mb-5`}>{title}</h2>
-            <div>
+            <p className="whitespace-pre-wrap">
                 {description}
-            </div><br/>
+            </p><br/>
             {animationElement}
             <button  onClick={() => {
                 switch(animationScript) {
@@ -307,6 +544,20 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
                         }
 
                         bubbleSort();
+                        break;
+                    case "quicksort":
+                        document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
+                        document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+
+                        if(updateAnimation) {
+                            const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
+
+                            for(let i=0;i<dataBlockElements.length;i++) {
+                                dataBlockElements[i].innerHTML = String(Math.floor(Math.random() * (9 - 0 + 1) + 0));
+                            }
+                        }
+
+                        quickSort();
                         break;
                     default:
                         console.error("error");
