@@ -9,8 +9,7 @@ type articleProps = {
     sourceCodes: Array<any>,
     timeAndSpace: Array<string>,
     id: string,
-    animationScript: string,
-    animationElement: JSX.Element
+    animationScript: string
 }
 
 const articles = [
@@ -125,17 +124,7 @@ my @sorted_array = bubble_sort(5, 2, 1, 4, 3);
 print "@sorted_array\\n";  # Output: 1 2 3 4 5`]],
         "timeAndSpace": ["1", "n^2", "n^2", "n"],
         "id": "1",
-        "animationScript": "bubblesort",
-        "animationElement": <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
-            <div className="w-[295px] h-[64px] xs:w-[445px] xs:h-[48px]">
-                <div data-pos="0" data-translate="0" className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">1</div>
-                <div data-pos="1" data-translate={document.body.clientWidth < 480 ? "50": "75"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">8</div>
-                <div data-pos="2" data-translate={document.body.clientWidth < 480 ? "100": "150"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">4</div>
-                <div data-pos="3" data-translate={document.body.clientWidth < 480 ? "150": "225"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">9</div>
-                <div data-pos="4" data-translate={document.body.clientWidth < 480 ? "200": "300"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">6</div>
-                <div data-pos="5" data-translate={document.body.clientWidth < 480 ? "250": "375"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">3</div>
-            </div>
-        </div>
+        "animationScript": "bubblesort"
     },
     {
         "title": "Quicksort",
@@ -310,21 +299,11 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "2",
-        "animationScript": "quicksort",
-        "animationElement": <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
-            <div className="w-[445px] h-[48px]">
-                <div data-pos="0" data-translate="0" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">1</div>
-                <div data-pos="1" data-translate="75" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">8</div>
-                <div data-pos="2" data-translate="150" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">4</div>
-                <div data-pos="3" data-translate="225" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">9</div>
-                <div data-pos="4" data-translate="300" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">6</div>
-                <div data-pos="5" data-translate="375" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">3</div>
-            </div>
-        </div>
+        "animationScript": "quicksort"
     }];
 
 const Articles = () => {
-    const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} animationElement={articles[0].animationElement} />);
+    const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} />);
 
     return (
         <div className="flex justify-between items-start flex-col mt-20 w-full gap-14 p-3">
@@ -333,7 +312,7 @@ const Articles = () => {
                 <input type="text" id="algorithmSearchInput" onInput={(searchPhraseEvent:any) => {
                                             for(let i=0;i<articles.length;i++) {
                                                 if(articles[i].title.toLowerCase().replace(' ', '').includes(searchPhraseEvent.target.value.toLowerCase().replace(' ', ''))) {
-                                                    setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} animationElement={articles[i].animationElement} />);
+                                                    setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} />);
                                                     i = articles.length;
                                                 }
                                             }
@@ -562,7 +541,7 @@ async function quickSort() {
 }
   
 
-const Article = ({ title="default", description="...", animationScript, sourceCodes=[], timeAndSpace, id, animationElement }:articleProps) => {
+const Article = ({ title="default", description="...", animationScript, sourceCodes=[], timeAndSpace, id }:articleProps) => {
     const sourceCodeElements = [];
     let windowLastClientWidth:number;
 
@@ -602,7 +581,16 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
             <p className="whitespace-pre-wrap">
                 {description}
             </p><br/>
-            {animationElement}
+            <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
+                <div className="w-[295px] h-[64px] xs:w-[445px] xs:h-[48px]">
+                    <div data-pos="0" data-translate="0" className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">1</div>
+                    <div data-pos="1" data-translate={document.body.clientWidth < 480 ? "50": "75"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">8</div>
+                    <div data-pos="2" data-translate={document.body.clientWidth < 480 ? "100": "150"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">4</div>
+                    <div data-pos="3" data-translate={document.body.clientWidth < 480 ? "150": "225"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">9</div>
+                    <div data-pos="4" data-translate={document.body.clientWidth < 480 ? "200": "300"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">6</div>
+                    <div data-pos="5" data-translate={document.body.clientWidth < 480 ? "250": "375"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">3</div>
+                </div>
+            </div>
             <button  onClick={() => {
                 switch(animationScript) {
                     case "bubblesort":
