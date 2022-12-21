@@ -337,7 +337,6 @@ const Articles = () => {
             <div className="w-full">
                 <h2 className="mb-2 text-center ss:text-left w-full">Choose an algorithm to learn more about it</h2>
                 <input type="text" id="algorithmSearchInput" onInput={(searchPhraseEvent:any) => {
-                                            console.log(searchPhraseEvent.target.value.toLowerCase())
                                             for(let i=0;i<articles.length;i++) {
                                                 if(articles[i].title.toLowerCase().replace(' ', '').includes(searchPhraseEvent.target.value.toLowerCase().replace(' ', ''))) {
                                                     setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} animationElement={articles[i].animationElement} />);
@@ -352,13 +351,12 @@ const Articles = () => {
     )
 }
 
+const good_check_color = "#00a716";
+const currently_checking_color = "#e80f1b";
+const default_color = "#00b862";
 let updateAnimation = false;
 
 function bubbleSort() {
-    const good_check_color = "#00a716";
-    const currently_checking_color = "#e80f1b";
-    const default_color = "#00b862";
-
     const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
     const dataBlocks:any = [0,1,2,3,4,5];
 
@@ -430,10 +428,6 @@ function bubbleSort() {
 }
 
 function quickSort() {
-    const good_check_color = "#00a716";
-    const currently_checking_color = "#e80f1b";
-    const default_color = "#00b862";
-
     const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
     const dataBlocks:any = [0,1,2,3,4,5];
 
@@ -441,67 +435,78 @@ function quickSort() {
         dataBlocks[parseInt(`${dataBlockElements[i].dataset.pos}`)] = dataBlockElements[i];
     }
 
-    let flawless = true;
-
-    for(let i=0;i<dataBlocks.length;i++) {
-        flawless = true;
-
-        setTimeout(async () => {
-            let datablock = dataBlocks[i];
-
-            if(i!==dataBlocks.length-1) {
-                let next_datablock = dataBlocks[i+1];
-
-                datablock.style.backgroundColor = currently_checking_color;
-
-                await new Promise(resolve => setTimeout(resolve, 400));
-                
-                if(parseInt(datablock.innerHTML) > parseInt(next_datablock.innerHTML)) {
-                    flawless = false;
-
-                    let translate1 = dataBlocks[i].dataset.translate;
-                    let translate2 = dataBlocks[i+1].dataset.translate;
-
-                    datablock.style.transform = `translateX(${translate2}px)`;
-                    datablock.setAttribute("data-pos", `${i+1}`);
-                    datablock.setAttribute("data-translate", translate2);
-
-                    next_datablock.style.transform = `translateX(${translate1}px)`;
-                    next_datablock.setAttribute("data-pos", `${i}`);
-                    next_datablock.setAttribute("data-translate", translate1);
-                    
-
-                    datablock.style.backgroundColor = i===dataBlocks.length-2 ? good_check_color : default_color;
-
-
-                    for(let i=0;i<dataBlockElements.length;i++) {
-                        dataBlocks[parseInt(`${dataBlockElements[i].dataset.pos}`)] = dataBlockElements[i];
-                    }
-                    i--
-                } else {
-                    datablock.style.backgroundColor = good_check_color;
-                }
-            } else {
-                datablock.style.backgroundColor = good_check_color;
-            }
-        }, i * 600)
-    }
-
-    setTimeout(() => {
-        if(!flawless) {
-            quickSort();
-        } else {
-            //finished
-            document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
-            document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
-
-            updateAnimation = true;
-
-            for(let i=0;i<dataBlockElements.length;i++) {
-                dataBlockElements[i].style.backgroundColor = default_color;
+    function partition(startIndex:number, endIndex:number) {
+        // select the last element as a pivot from the array
+        const pivot = arr[endIndex]  //parseInt(dataBlocks[endIndex].innerHTML); //
+      
+        // elements smaller than the pivot element goes to the left of `pivotIndex`
+        // elements greater than the pivot element goes to the right of `pivotIndex`
+        // equal elements can go on either side of the pivotIndex
+        let pivotIndex = startIndex;
+      
+        // if an element is less than or equal to the pivot, we will increase the 'pivotIndex' and we will place that element before the pivot.
+        for (let i = startIndex; i < endIndex; i++) {
+            if (arr[i] <= pivot) {
+                [arr[i], arr[pivotIndex]] = [arr[pivotIndex], arr[i]];
+                pivotIndex++;
             }
         }
-    }, (dataBlocks.length + 1) * 600);
+      
+        // swap `pivotIndex` with pivot element
+        [arr[pivotIndex], arr[endIndex]] = [arr[endIndex], arr[pivotIndex]];
+      
+        return pivotIndex;
+    }
+      
+    function sub_quickSort() {
+        //stack for storing start and end Index of the subarrays
+        const s = [];
+        const n = dataBlocks.length;
+      
+        //starting index of the given array
+        let startIdx = 0;
+        //ending index of the given array
+        let endIdx = n - 1;
+      
+        //pushing the start and end index of the array into the stack
+        s.push([startIdx, endIdx]);
+      
+        while (s.length > 0) {
+            // removing the top pair from the array and get the starting
+            // and ending index of the subarray
+            startIdx = s[s.length - 1][0];
+            endIdx = s[s.length - 1][1];
+            s.pop();
+        
+            // partitioning the elements around pivot
+            const pivotIdx = partition(startIdx, endIdx);
+        
+            //push subarray indices to stack which has elements smaller than the current pivot
+            if (pivotIdx - 1 > startIdx) {
+                s.push([startIdx, pivotIdx - 1]);
+            }
+        
+            //push subarray indices to stack which has elements greater than the current pivot
+            if (pivotIdx + 1 < endIdx) {
+                s.push([pivotIdx + 1, endIdx]);
+            }
+        }
+    }
+      
+    const arr = [5, 2, 1, 4, 3];
+
+    sub_quickSort();
+    
+    console.log(arr);
+
+    document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
+    document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+
+    updateAnimation = true;
+
+    for(let i=0;i<dataBlockElements.length;i++) {
+        dataBlockElements[i].style.backgroundColor = default_color;
+    }
 }
   
 
