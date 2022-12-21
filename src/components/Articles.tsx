@@ -304,17 +304,34 @@ print "@sorted\n";  # prints "1 2 3 4 5"`]],
 
 const Articles = () => {
     const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} />);
+    let shouldSearch = true;
+    const articleTitles:Array<string> = [];
+    let searchString:string;
+
+    for(let i=0;i<articles.length;i++) {
+        articleTitles.push(articles[i].title.toLowerCase().replace(' ', ''));
+    }
+    
 
     return (
         <div className="flex justify-between items-start flex-col mt-20 w-full gap-14 p-3">
             <div className="w-full">
                 <h2 className="mb-2 text-center ss:text-left w-full">Choose an algorithm to learn more about it</h2>
                 <input type="text" id="algorithmSearchInput" onInput={(searchPhraseEvent:any) => {
-                                            for(let i=0;i<articles.length;i++) {
-                                                if(articles[i].title.toLowerCase().replace(' ', '').includes(searchPhraseEvent.target.value.toLowerCase().replace(' ', ''))) {
-                                                    setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} />);
-                                                    i = articles.length;
-                                                }
+                                            if(shouldSearch) {
+                                                shouldSearch = false;
+                                                setTimeout(() => {
+                                                    searchString = searchPhraseEvent.target.value.toLowerCase().replaceAll(' ', '');
+
+                                                    for(let i=0;i<articleTitles.length;i++) {
+                                                        if(articleTitles[i].indexOf(searchString) > -1) {
+                                                            setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} />);
+                                                          i = articleTitles.length;
+                                                        }
+                                                    }
+
+                                                    shouldSearch = true;
+                                                }, 720);
                                             }
                                         }} placeholder="Try merge sort.." className="rounded bg-transparent border border-white p-2 w-full max-w-xs ml-[50%] ss:ml-[0px] translate-x-[-50%] ss:translate-x-[0px]" />
                 <button id="invisClickMe"></button>
