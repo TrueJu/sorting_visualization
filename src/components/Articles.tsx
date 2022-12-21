@@ -127,13 +127,13 @@ print "@sorted_array\\n";  # Output: 1 2 3 4 5`]],
         "id": "1",
         "animationScript": "bubblesort",
         "animationElement": <div className="mt-5 mb-5 flex gap-[10px] w-full justify-center">
-            <div className="w-[445px] h-[48px]">
-                <div data-pos="0" data-translate="0" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">1</div>
-                <div data-pos="1" data-translate="75" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">8</div>
-                <div data-pos="2" data-translate="150" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">4</div>
-                <div data-pos="3" data-translate="225" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">9</div>
-                <div data-pos="4" data-translate="300" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">6</div>
-                <div data-pos="5" data-translate="375" className="data-blocks p-3 w-[70px] bg-green-500 absolute text-center">3</div>
+            <div className="w-[295px] h-[64px] xs:w-[445px] xs:h-[48px]">
+                <div data-pos="0" data-translate="0" className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">1</div>
+                <div data-pos="1" data-translate={document.body.clientWidth < 480 ? "50": "75"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">8</div>
+                <div data-pos="2" data-translate={document.body.clientWidth < 480 ? "100": "150"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">4</div>
+                <div data-pos="3" data-translate={document.body.clientWidth < 480 ? "150": "225"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">9</div>
+                <div data-pos="4" data-translate={document.body.clientWidth < 480 ? "200": "300"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">6</div>
+                <div data-pos="5" data-translate={document.body.clientWidth < 480 ? "250": "375"} className="data-blocks p-3 xs:py-3 py-5 w-[45px] xs:w-[70px] bg-green-500 absolute text-center">3</div>
             </div>
         </div>
     },
@@ -444,7 +444,7 @@ async function quickSort() {
                 for (let i = startIndex; i < endIndex; i++) {
                     setTimeout(async () => {
                         dataBlocks[i].style.backgroundColor = currently_checking_color;
-                        dataBlocks[endIndex].style.backgroundColor = currently_checking_color;
+                        dataBlocks[endIndex].style.backgroundColor = "#0066ff"; //Pivot color
 
                         await new Promise(resolve => setTimeout(resolve, 400));
 
@@ -463,15 +463,15 @@ async function quickSort() {
                             dataBlocks[pivotIndex].setAttribute("data-pos", `${dataBlocks1Pos}`);
                             dataBlocks[pivotIndex].setAttribute("data-translate", dataBlocks1Transform);
 
+                            dataBlocks[i].style.backgroundColor = good_check_color;
+                            dataBlocks[endIndex].style.backgroundColor = good_check_color;
+
                             dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
                             dataBlocks = [0,1,2,3,4,5];
 
                             for(let i=0;i<dataBlockElements.length;i++) {
                                 dataBlocks[parseInt(`${dataBlockElements[i].dataset.pos}`)] = dataBlockElements[i];
                             }
-
-                            dataBlocks[i].style.backgroundColor = good_check_color;
-                            dataBlocks[endIndex].style.backgroundColor = good_check_color;
 
                             pivotIndex++;
                         } else {
@@ -564,6 +564,7 @@ async function quickSort() {
 
 const Article = ({ title="default", description="...", animationScript, sourceCodes=[], timeAndSpace, id, animationElement }:articleProps) => {
     const sourceCodeElements = [];
+    let windowLastClientWidth:number;
 
     for(let i=0;i<sourceCodes.length;i++) {
         sourceCodeElements.push(<SourceCodeElement title={sourceCodes[i][0]} sourcecode={sourceCodes[i][2]} language={sourceCodes[i][1]} />);
@@ -572,9 +573,25 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
     useEffect(() => {
         const dataBlocks = document.querySelectorAll<HTMLElement>(".data-blocks");
 
+        windowLastClientWidth = document.body.clientWidth;
+
         for(let i=0;i<dataBlocks.length;i++) {
             dataBlocks[i].style.transform = `translateX(${dataBlocks[i].dataset.translate}px)`;
         }
+    });
+
+    window.addEventListener('resize', () => {
+        if((windowLastClientWidth < 480 && document.body.clientWidth >= 480) || (windowLastClientWidth >= 480 && document.body.clientWidth < 480)) {
+            console.log("resize")
+            const dataBlocks = document.querySelectorAll<HTMLElement>(".data-blocks");
+
+            for(let i=0;i<dataBlocks.length;i++) {
+                dataBlocks[i].setAttribute("data-translate", document.body.clientWidth < 480 ? String(i*50): String(i*75));
+                dataBlocks[i].style.transform = `translateX(${dataBlocks[i].dataset.translate}px)`;
+            }
+        }
+
+        windowLastClientWidth = document.body.clientWidth;
     });
 
     updateAnimation = false;

@@ -204,7 +204,7 @@ const Card = ({ img, title="default", content="default", animated=false }:CardPr
     }} className="shadow-xl shadow-[#ffffff09] overflow-hidden border-[1px] rounded-xl xs:w-full ss:w-60 sm:w-72 xsm:w-96 md:w-[400px] xmd:w-80 p-6 pb-3 mt-5 cursor-pointer hover:bg-[#ffffff03] group transition-all">
         <div className="w-24 h-20 -ml-6 -mt-6 -mb-[56px] blur-2xl opacity-10 bg-blue-gradient"></div>
         <img src={img} alt="Sorting Icon" className="w-12 absolute" />
-        <h2 className="ml-24 text-2xl cursor-pointer text-blue-gradient font-bold">{title}</h2>
+        <h2 className="ml-24 text-2xl cursor-pointer text-blue-gradient font-bold break-words">{title}</h2>
         {/* <p className="text-green-500 w-full font-bold text-[8px] -mb-[28px] text-right -translate-y-[98px] translate-x-8 rotate-[30deg]">{animated ? "Animated" : ""}</p> */}
         <p className="mt-9 cursor-pointer">{content}</p>
         <hr className="card-hr" />

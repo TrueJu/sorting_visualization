@@ -6,8 +6,8 @@ const Banner = () => (
 			of sorting algorithms
 		</h1>
 		<div className="w-1/2 flex items-center justify-center">
-			<img src="../src/assets/stop_watch.svg" alt="" className="w-36 lg:w-64 ss:w-40 relative z-[1]" />
-			<div className="bg-blue-gradient lg:w-52 lg:h-40 ss:w-32 ss:h-28 w-28 h-24 blur-3xl -translate-x-4 rotate-12 opacity-40 absolute"></div>
+			<img src="../src/assets/stop_watch.svg" alt="" className="w-36 lg:w-64 ss:w-40 xs:translate-x-0 translate-x-14 relative z-[1]" />
+			<div className="bg-blue-gradient lg:w-52 lg:h-40 ss:w-32 ss:h-28 w-28 h-24 blur-3xl xs:-translate-x-4 translate-x-5 rotate-12 opacity-40 absolute"></div>
 		</div>
 		<div className="break"></div>
 		<p className="text-gray-300 text-center mt-10 w-full">Explore the intriguing world of sorting algorithms used in modern day software and on the web.<br />
