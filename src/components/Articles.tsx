@@ -300,6 +300,119 @@ print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "2",
         "animationScript": "quicksort"
+    },
+    {
+        "title": "Bubble Sort",
+        "description": "Bubble sort is a simple sorting algorithm that repeatedly iterates through a list of items, compares adjacent elements, and swaps them if they are in the wrong order. This process continues until the list is completely sorted. The algorithm gets its name from the way smaller elements \"bubble\" to the top of the list, while larger elements sink to the bottom. Bubble sort has a time complexity of O(n^2) in the worst case, which makes it less efficient than other sorting algorithms for large lists. However, it is simple to implement and can be useful in certain situations where the list is nearly sorted or the cost of comparison is high.",
+        "sourceCodes": [["Javascript", "javascript", `function bubbleSort(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap the elements
+                let temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+    return arr;
+}
+
+let sortedArray = bubbleSort([5, 2, 1, 4, 3]);
+console.log(sortedArray);  // Output: [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `fun bubbleSort(arr: IntArray): IntArray {
+    for (i in 0 until arr.size) {
+        for (j in 0 until arr.size - i - 1) {
+            if (arr[j] > arr[j + 1]) {
+                // Swap the elements
+                val temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+        }
+    }
+    return arr
+}
+
+fun main() {
+    val sortedArray = bubbleSort(intArrayOf(5, 2, 1, 4, 3))
+    println(sortedArray.joinToString())  // Output: [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.Arrays;
+
+public class BubbleSort {
+    public static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap the elements
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {5, 2, 1, 4, 3};
+        bubbleSort(arr);
+        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    }
+}`], ["C#", "csharp", `using System;
+
+public class Bubblesort {
+    static void Main(string[] args) {
+        int[] arr = { 5, 2, 1, 4, 3 };
+        bubbleSort(arr);
+        Console.WriteLine(string.Join(", ", arr));  // Output: 1, 2, 3, 4, 5
+    }
+
+    static void bubbleSort(int[] arr) {
+        for (int i = 0; i < arr.Length; i++) {
+            for (int j = 0; j < arr.Length - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    // Swap the elements
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    }
+}`], ["Rust", "rust", `fn bubble_sort(arr: &mut [i32]) {
+    for i in 0..arr.len() {
+        for j in 0..arr.len() - i - 1 {
+            if arr[j] > arr[j + 1] {
+                // Swap the elements
+                arr.swap(j, j + 1);
+            }
+        }
+    }
+}
+
+fn main() {
+    let mut arr = [5, 2, 1, 4, 3];
+    bubble_sort(&mut arr);
+    println!("{:?}", arr);  // Output: [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub bubble_sort {
+    my @arr = @_;
+    for my $i (0..$#arr) {
+        for my $j (0..$#arr - $i - 1) {
+            if ($arr[$j] > $arr[$j + 1]) {
+                # Swap the elements
+                my $temp = $arr[$j];
+                $arr[$j] = $arr[$j + 1];
+                $arr[$j + 1] = $temp;
+            }
+        }
+    }
+    return @arr;
+}
+
+my @sorted_array = bubble_sort(5, 2, 1, 4, 3);
+print "@sorted_array\\n";  # Output: 1 2 3 4 5`]],
+        "timeAndSpace": ["1", "n^2", "n^2", "n"],
+        "id": "1",
+        "animationScript": "bubblesort"
     }];
 
 let shouldSearch = true;
@@ -307,7 +420,7 @@ let shouldSearch = true;
 const articleTitlesObj:any = {};
 let searchString:string;
 let slicedSearchString:string;
-let articleTitleObjSlicedRef:any;
+let articleTitleObjSlicedRef:any;   //TODO correc type
 let artTitleObjSlRefLen:number;
 let articleMatchRef:number;
 
@@ -351,7 +464,8 @@ const Articles = () => {
                                                                 }
                                                             }
                                                             shouldSearch = true;
-                                                        } catch (error) { shouldSearch = true; /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
+                                                        } catch (error) { 
+                                                            shouldSearch = true; /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
                                                     }, 500);
                                                 }
                                             }
