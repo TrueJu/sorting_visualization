@@ -195,12 +195,15 @@ const Explore = () => {
 
 const Card = ({ img, title="default", content="default", animated=false }:CardProps) =>
     <div onClick={() => {
+        const algorithmSearchInput = document.getElementById("algorithmSearchInput");
+
         // @ts-expect-error
-        document.getElementById("algorithmSearchInput").value = title;
+        algorithmSearchInput.value = title;
 
         const changeEvent = new Event('input', { bubbles: true });
-       
-        document.getElementById("algorithmSearchInput")!.dispatchEvent(changeEvent);
+        algorithmSearchInput!.dispatchEvent(changeEvent);
+
+        algorithmSearchInput!.scrollIntoView({behavior: "smooth", block: "start"});
     }} className="shadow-xl shadow-[#ffffff09] overflow-hidden border-[1px] rounded-xl xs:w-full ss:w-60 sm:w-72 xsm:w-96 md:w-[400px] xmd:w-80 p-6 pb-3 mt-5 cursor-pointer hover:bg-[#ffffff03] group transition-all">
         <div className="w-24 h-20 -ml-6 -mt-6 -mb-[56px] blur-2xl opacity-10 bg-blue-gradient"></div>
         <img src={img} alt="Sorting Icon" className="w-12 absolute" />

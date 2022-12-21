@@ -305,33 +305,56 @@ print "@sorted\n";  # prints "1 2 3 4 5"`]],
 const Articles = () => {
     const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} />);
     let shouldSearch = true;
-    const articleTitles:Array<string> = [];
+
+    const articleTitlesObj:any = {};
     let searchString:string;
+    let slicedSearchString:string;
+    let articleTitleObjSlicedRef:any;
+    let artTitleObjSlRefLen:number;
+    let articleMatchRef:number;
 
     for(let i=0;i<articles.length;i++) {
-        articleTitles.push(articles[i].title.toLowerCase().replace(' ', ''));
-    }
-    
+        let currentArticleTitle = articles[i].title.toLowerCase().replace(' ', '');
+        let currentArticleTitleSliced = currentArticleTitle.slice(0,2);
 
+        if(articleTitlesObj.hasOwnProperty(currentArticleTitleSliced)) {
+            articleTitlesObj[currentArticleTitleSliced].push(currentArticleTitle, i);
+        } else {
+            articleTitlesObj[currentArticleTitleSliced] = [[currentArticleTitle, i]];
+        }
+    }
+
+    console.log(articleTitlesObj)
+    
     return (
         <div className="flex justify-between items-start flex-col mt-20 w-full gap-14 p-3">
             <div className="w-full">
                 <h2 className="mb-2 text-center ss:text-left w-full">Choose an algorithm to learn more about it</h2>
                 <input type="text" id="algorithmSearchInput" onInput={(searchPhraseEvent:any) => {
                                             if(shouldSearch) {
-                                                shouldSearch = false;
-                                                setTimeout(() => {
-                                                    searchString = searchPhraseEvent.target.value.toLowerCase().replaceAll(' ', '');
-
-                                                    for(let i=0;i<articleTitles.length;i++) {
-                                                        if(articleTitles[i].indexOf(searchString) > -1) {
-                                                            setVisibleArticle(<Article key={i} title={articles[i].title} description={articles[i].description} animationScript={articles[i].animationScript} sourceCodes={articles[i].sourceCodes} timeAndSpace={articles[i].timeAndSpace} id={articles[i].id} />);
-                                                          i = articleTitles.length;
-                                                        }
-                                                    }
-
-                                                    shouldSearch = true;
-                                                }, 720);
+                                                if(searchPhraseEvent.target.value.length >= 2) {
+                                                    shouldSearch = false;
+                                                    setTimeout(() => {
+                                                        try {
+                                                            searchString = searchPhraseEvent.target.value.toLowerCase().replaceAll(' ', '');
+                                                            slicedSearchString = searchString.slice(0,2);
+                                                            articleTitleObjSlicedRef = articleTitlesObj[slicedSearchString];
+                                                            artTitleObjSlRefLen = articleTitleObjSlicedRef.length;
+        
+                                                            if(articleTitlesObj.hasOwnProperty(slicedSearchString)) {
+                                                                for(let i=0;i<artTitleObjSlRefLen;i++) {
+                                                                    if(articleTitleObjSlicedRef[i][0].indexOf(searchString) > -1) {
+                                                                        articleMatchRef = articleTitleObjSlicedRef[i][1];
+        
+                                                                        setVisibleArticle(<Article key={articleMatchRef} title={articles[articleMatchRef].title} description={articles[articleMatchRef].description} animationScript={articles[articleMatchRef].animationScript} sourceCodes={articles[articleMatchRef].sourceCodes} timeAndSpace={articles[articleMatchRef].timeAndSpace} id={articles[articleMatchRef].id} />);
+                                                                        i = artTitleObjSlRefLen;
+                                                                    }
+                                                                }
+                                                            }
+                                                            shouldSearch = true;
+                                                        } catch (error) { /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
+                                                    }, 350);
+                                                }
                                             }
                                         }} placeholder="Try merge sort.." className="rounded bg-transparent border border-white p-2 w-full max-w-xs ml-[50%] ss:ml-[0px] translate-x-[-50%] ss:translate-x-[0px]" />
                 <button id="invisClickMe"></button>
