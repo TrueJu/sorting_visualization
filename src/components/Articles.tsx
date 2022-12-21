@@ -353,7 +353,7 @@ const Articles = () => {
                                                             }
                                                             shouldSearch = true;
                                                         } catch (error) { /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
-                                                    }, 350);
+                                                    }, 500);
                                                 }
                                             }
                                         }} placeholder="Try merge sort.." className="rounded bg-transparent border border-white p-2 w-full max-w-xs ml-[50%] ss:ml-[0px] translate-x-[-50%] ss:translate-x-[0px]" />
