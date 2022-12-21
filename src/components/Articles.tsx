@@ -302,29 +302,28 @@ print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "animationScript": "quicksort"
     }];
 
+let shouldSearch = true;
+
+const articleTitlesObj:any = {};
+let searchString:string;
+let slicedSearchString:string;
+let articleTitleObjSlicedRef:any;
+let artTitleObjSlRefLen:number;
+let articleMatchRef:number;
+
+for(let i=0;i<articles.length;i++) {
+    let currentArticleTitle = articles[i].title.toLowerCase().replace(' ', '');
+    let currentArticleTitleSliced = currentArticleTitle.slice(0,2);
+
+    if(articleTitlesObj.hasOwnProperty(currentArticleTitleSliced)) {
+        articleTitlesObj[currentArticleTitleSliced].push(currentArticleTitle, i);
+    } else {
+        articleTitlesObj[currentArticleTitleSliced] = [[currentArticleTitle, i]];
+    }
+}
+
 const Articles = () => {
     const [visibleArticle, setVisibleArticle] = useState(<Article key={0} title={articles[0].title} description={articles[0].description} animationScript={articles[0].animationScript} sourceCodes={articles[0].sourceCodes} timeAndSpace={articles[0].timeAndSpace} id={articles[0].id} />);
-    let shouldSearch = true;
-
-    const articleTitlesObj:any = {};
-    let searchString:string;
-    let slicedSearchString:string;
-    let articleTitleObjSlicedRef:any;
-    let artTitleObjSlRefLen:number;
-    let articleMatchRef:number;
-
-    for(let i=0;i<articles.length;i++) {
-        let currentArticleTitle = articles[i].title.toLowerCase().replace(' ', '');
-        let currentArticleTitleSliced = currentArticleTitle.slice(0,2);
-
-        if(articleTitlesObj.hasOwnProperty(currentArticleTitleSliced)) {
-            articleTitlesObj[currentArticleTitleSliced].push(currentArticleTitle, i);
-        } else {
-            articleTitlesObj[currentArticleTitleSliced] = [[currentArticleTitle, i]];
-        }
-    }
-
-    console.log(articleTitlesObj)
     
     return (
         <div className="flex justify-between items-start flex-col mt-20 w-full gap-14 p-3">
@@ -352,7 +351,7 @@ const Articles = () => {
                                                                 }
                                                             }
                                                             shouldSearch = true;
-                                                        } catch (error) { /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
+                                                        } catch (error) { shouldSearch = true; /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
                                                     }, 500);
                                                 }
                                             }
@@ -601,7 +600,6 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
 
     window.addEventListener('resize', () => {
         if((windowLastClientWidth < 480 && document.body.clientWidth >= 480) || (windowLastClientWidth >= 480 && document.body.clientWidth < 480)) {
-            console.log("resize")
             const dataBlocks = document.querySelectorAll<HTMLElement>(".data-blocks");
 
             for(let i=0;i<dataBlocks.length;i++) {
