@@ -1484,7 +1484,7 @@ for(let i=0;i<articles.length;i++) {
     let currentArticleTitleSliced = currentArticleTitle.slice(0,2);
 
     if(articleTitlesObj.hasOwnProperty(currentArticleTitleSliced)) {
-        articleTitlesObj[currentArticleTitleSliced].push(currentArticleTitle, i);
+        articleTitlesObj[currentArticleTitleSliced].push([currentArticleTitle, i]);
     } else {
         articleTitlesObj[currentArticleTitleSliced] = [[currentArticleTitle, i]];
     }
@@ -1509,9 +1509,9 @@ const Articles = () => {
                                                             if(articleTitlesObj.hasOwnProperty(slicedSearchString)) {
                                                                 articleTitleObjSlicedRef = articleTitlesObj[slicedSearchString];
                                                                 artTitleObjSlRefLen = articleTitleObjSlicedRef.length;
-
+                                                                
                                                                 for(let i=0;i<artTitleObjSlRefLen;i++) {
-                                                                    if(articleTitleObjSlicedRef[i][0].indexOf(searchString) > -1) {
+                                                                    if(articleTitleObjSlicedRef[i][0].lastIndexOf(searchString) > -1) {
                                                                         articleMatchRef = articleTitleObjSlicedRef[i][1];
         
                                                                         setVisibleArticle(<Article key={articleMatchRef} title={articles[articleMatchRef].title} description={articles[articleMatchRef].description} animationScript={articles[articleMatchRef].animationScript} sourceCodes={articles[articleMatchRef].sourceCodes} timeAndSpace={articles[articleMatchRef].timeAndSpace} id={articles[articleMatchRef].id} />);
@@ -1520,8 +1520,10 @@ const Articles = () => {
                                                                 }
                                                             }
                                                             shouldSearch = true;
-                                                        } catch (error) { 
-                                                            shouldSearch = true; /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ }
+                                                        } catch (error) { /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ 
+                                                            shouldSearch = true;
+                                                            console.log(error);
+                                                        }
                                                     }, 500);
                                                 }
                                             }
