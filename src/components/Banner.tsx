@@ -11,7 +11,7 @@ const Banner = () => (
 		</div>
 		<div className="break"></div>
 		<p className="text-gray-300 text-center mt-10 w-full">Explore the intriguing world of sorting algorithms used in modern day software and on the web.<br />
-		<b>Space</b> and <b>time</b> complexity are provided for each algorithm, as well as the source-code for over a dozen of programming languages.</p>
+		<b>Space</b> and <b>time</b> complexity are provided for each algorithm, as well as the source-code for six different programming languages.</p>
     </div>
 )
 

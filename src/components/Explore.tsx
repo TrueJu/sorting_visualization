@@ -20,7 +20,7 @@ const catalogue = [
     },
     {
         "name": "Merge sort",
-        "content": "Merge sort is an efficient, general-purpose, algorithm.",
+        "content": "Merge sort is an efficient, general-purpose, algorithm. Implementation of the algorithm is a three-step procedure. Divide, conquer, and combine.",
         "animated": false
     },
     {

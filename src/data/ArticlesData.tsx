@@ -716,7 +716,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "4",
-        "animationScript": "selectionsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Insertion sort",
@@ -891,7 +891,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "5",
-        "animationScript": "insertionsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Heap sort",
@@ -1067,7 +1067,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "6",
-        "animationScript": "heapsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Counting sort",
@@ -1241,7 +1241,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "7",
-        "animationScript": "countingsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Radix sort",
@@ -1417,7 +1417,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "8",
-        "animationScript": "radixsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Bucket sort",
@@ -1593,7 +1593,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "9",
-        "animationScript": "bucketsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Shellsort",
@@ -1770,7 +1770,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "10",
-        "animationScript": "shellsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Comb sort",
@@ -1945,7 +1945,7 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "11",
-        "animationScript": "combsort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Pigeonhole sort",
@@ -2123,7 +2123,2630 @@ my @sorted = quicksort(5, 2, 1, 4, 3);
 print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
         "id": "12",
-        "animationScript": "pigeonholesort"
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Cycle sort",
+        "description": `Cycle sort is an in-place, stable sorting algorithm that is based on the idea of cycling through the elements of the list and placing each element in its correct position. It works by finding the smallest element in the unsorted part of the list and then bringing it to the front by repeatedly swapping it with the element at the current position. The algorithm then moves on to the next unsorted element and repeats the process until the entire list is sorted.\n
+One of the key features of cycle sort is that it makes the minimum possible number of swaps to sort the list. It does this by keeping track of the cycles of elements that need to be swapped, and only making the swaps when necessary. This means that cycle sort has a lower overhead than other sorting algorithms, which can make it more efficient in certain situations.\n
+Overall, cycle sort is a useful sorting algorithm that is relatively easy to implement and has a good performance in terms of both speed and memory usage. It is not as well-known as other sorting algorithms such as quicksort or merge sort, but it can be a useful tool in the right context.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "13",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Cocktail sort",
+        "description": `Cocktail sort, also known as bidirectional bubble sort or shaker sort, is a variant of bubble sort that alternates between moving elements from the beginning to the end of the list and vice versa. It works by repeatedly comparing pairs of adjacent elements and swapping them if they are in the wrong order, until the list is fully sorted.\n
+The advantage of cocktail sort over bubble sort is that it is able to sort elements that are already in the correct position more quickly, because it does not need to perform as many unnecessary swaps. This makes cocktail sort slightly more efficient than bubble sort, although it is still considered to be a relatively slow sorting algorithm compared to other options such as quicksort or merge sort.\n
+Like bubble sort, cocktail sort is a simple and easy-to-implement algorithm that is well-suited to small lists and partially-sorted data. It is not typically used for large, complex datasets due to its relatively poor performance, but it can be a useful tool in certain situations where simplicity and ease of implementation are more important than raw speed.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "14",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Strand sort",
+        "description": `Strand sort is a stable, in-place sorting algorithm that is based on the idea of repeatedly merging small, partially-sorted sublists together to form a fully-sorted list. It works by dividing the list into a series of strands, which are small sublists that are already partially sorted. The algorithm then repeatedly merges these strands together, using a stable merge algorithm, until the entire list is sorted.\n
+One of the key features of strand sort is that it is able to make efficient use of cache memory, which makes it faster than some other sorting algorithms when working with large datasets. It is also relatively simple to implement, although the implementation of the stable merge algorithm used to merge the strands can be more complex.\n
+Overall, strand sort is a useful sorting algorithm that is particularly well-suited to large, complex datasets where efficient use of cache memory is important. It is not as well-known as other sorting algorithms such as quicksort or merge sort, but it can be a useful tool in the right context.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "15",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Bitonic sort",
+        "description": `Bitonic sort is a sorting algorithm that is based on the idea of sorting pairs of elements using a bitonic sequence, which is a sequence of elements that is first increasing and then decreasing. It works by repeatedly dividing the list into pairs of elements and sorting them using a bitonic sequence, until the entire list is sorted.\n
+One of the key features of bitonic sort is that it is able to perform sorting operations in parallel, which makes it faster than some other sorting algorithms. It is also relatively simple to implement, although it can be more complex to understand than some other sorting algorithms.\n
+Overall, bitonic sort is a useful sorting algorithm that is particularly well-suited to large, complex datasets where efficient use of parallel processing is important. It is not as well-known as other sorting algorithms such as quicksort or merge sort, but it can be a useful tool in the right context.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "16",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Pancake sorting",
+        "description": `Pancake sort is a sorting algorithm that is based on the idea of repeatedly flipping pairs of elements in the list until they are in the correct order. It works by starting at the beginning of the list and finding the largest element, which it brings to the front of the list by repeatedly flipping the list until the largest element is at the front. It then repeats the process for the remaining elements of the list, until the entire list is sorted.\n
+One of the key features of pancake sort is that it is an in-place sorting algorithm, which means that it does not require any additional memory space to perform the sorting operations. It is also relatively simple to implement, although it is generally considered to be a relatively slow sorting algorithm compared to other options such as quicksort or merge sort.\n
+Overall, pancake sort is a useful sorting algorithm that is particularly well-suited to small lists and partially-sorted data. It is not typically used for large, complex datasets due to its relatively poor performance, but it can be a useful tool in certain situations where simplicity and ease of implementation are more important than raw speed.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "17",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Binary insertion sort",
+        "description": `Binary insertion sort is a sorting algorithm that is based on the idea of using a binary search to find the correct position for each element in the list. It works by starting at the beginning of the list and repeatedly inserting each element into its correct position, using a binary search to find the correct location.\n
+One of the key features of binary insertion sort is that it is relatively efficient for small lists, because it is able to perform the insertion operations in logarithmic time using the binary search. It is also relatively simple to implement, although it is generally considered to be a slower sorting algorithm than other options such as quicksort or merge sort for larger datasets.\n
+Overall, binary insertion sort is a useful sorting algorithm that is particularly well-suited to small lists and partially-sorted data. It is not typically used for large, complex datasets due to its relatively poor performance, but it can be a useful tool in certain situations where simplicity and ease of implementation are more important than raw speed.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "18",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Bogosort",
+        "description": `Bogosort, also known as monkey sort, is a sorting algorithm that is based on the idea of repeatedly random shuffling the elements of the list until they are in the correct order.\n
+Bogosort is considered to be one of the least efficient sorting algorithms, because it relies on random chance to sort the list and has a worst-case complexity of O(n!) (meaning that it will take a very long time to sort large lists). It is generally not used in practice, but it is sometimes used as a joke or an example of an inefficient sorting algorithm.\n
+Overall, bogosort is a very simple sorting algorithm that is not suitable for use in most situations due to its extremely poor performance. It is not a useful tool for sorting large, complex datasets, and should generally be avoided in favor of more efficient sorting algorithms such as quicksort or merge sort.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "19",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Gnome sort",
+        "description": `Gnome sort, also known as stupid sort or the dumb sort, is a simple, in-place sorting algorithm that is based on the idea of repeatedly comparing adjacent elements and swapping them if they are in the wrong order. It works by starting at the beginning of the list and repeatedly comparing each element to the one immediately before it. If the two elements are in the wrong order, the algorithm swaps them and moves the current position back by one element. If the two elements are in the correct order, the algorithm moves the current position forward by one element. The process continues until the entire list is sorted.\n
+One of the key features of gnome sort is that it is a stable sorting algorithm, which means that it preserves the relative order of elements with equal keys. It is also relatively simple to implement, although it is generally considered to be a slower sorting algorithm than other options such as quicksort or merge sort for larger datasets.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "20",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Sleep sort",
+        "description": `Sleep sort is a sorting algorithm that is based on the idea of using the time required to perform a specific task to determine the order of the elements in the list. It works by starting a separate thread for each element in the list and having each thread sleep for a time period proportional to the value of the element. When the time period has elapsed, the thread wakes up and adds the element to the sorted list.\n
+Sleep sort is considered to be a very inefficient sorting algorithm, because it relies on the time required to perform a specific task to determine the order of the elements in the list. It is generally not used in practice, but it is sometimes used as a joke or an example of an inefficient sorting algorithm.\n
+Overall, sleep sort is a very simple sorting algorithm that is not suitable for use in most situations due to its extremely poor performance. It is not a useful tool for sorting large, complex datasets, and should generally be avoided in favor of more efficient sorting algorithms such as quicksort or merge sort.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "21",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Stooge sort",
+        "description": `Stooge sort is a sorting algorithm that is based on the idea of repeatedly swapping elements that are out of order until the entire list is sorted. It works by dividing the list into three sections and sorting the first two-thirds of the list, the last two-thirds of the list, and then the first two-thirds of the list again. The process is repeated until the list is fully sorted.\n
+Stooge sort is considered to be a very inefficient sorting algorithm, with a worst-case complexity of O(n^(log 3/log 1.5)), which is much slower than other sorting algorithms such as quicksort or merge sort. It is generally not used in practice, but it is sometimes used as a joke or an example of an inefficient sorting algorithm.\n
+Overall, stooge sort is a very simple sorting algorithm that is not suitable for use in most situations due to its extremely poor performanceand and should therefore generally be avoided in favor of more efficient sorting algorithms.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "22",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Tag sort",
+        "description": `Tag sort is a sorting algorithm that is based on the idea of using a tag value to determine the order of the elements in the list. It works by assigning a tag value to each element in the list and then sorting the elements based on their tag values.\n
+One of the key features of tag sort is that it is a stable sorting algorithm, which means that it preserves the relative order of elements with equal keys. It is also relatively simple to implement, although the process of assigning tag values to the elements can be more complex.\n
+Overall, tag sort is a useful sorting algorithm that is particularly well-suited to situations where the elements in the list have associated tag values that can be used to determine their order. It is not as well-known as other sorting algorithms such as quicksort or merge sort, but it can be a useful tool in the right context.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "23",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Tree sort",
+        "description": `Tree sort is a sorting algorithm that is based on the idea of using a binary search tree to store and sort the elements in the list. It works by inserting the elements of the list into a binary search tree, and then traversing the tree in-order to retrieve the elements in sorted order.\n
+One of the key features of tree sort is that it is a stable sorting algorithm, which means that it preserve the relative order of elements with equal keys. It is also relatively efficient for large lists, because it is able to perform the sorting operations in logarithmic time using the binary search tree.\n
+Overall, tree sort is a useful sorting algorithm that is particularly well-suited to large, complex datasets where efficient use of cache memory is important. It is not as well-known as other sorting algorithms such as quicksort or merge sort, but it can be a useful tool in the right context.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "24",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Cartesian sort",
+        "description": `Cartesian sort is an adaptive sorting algorithm that is particularly efficient when sorting partially sorted data. It works by constructing a min-heap Cartesian tree from the input data, and then using a priority queue to pop the minimum value from the tree and add it to the output sequence. The left and right children of the popped value are then pushed into the priority queue in a pre-order manner. In the best case, when the input data is partially sorted, Cartesian sort has a time complexity of O(n), which is much faster than other sorting algorithms such as quicksort or merge sort. However, in the worst case, when the input data is not partially sorted, the time complexity of Cartesian sort is O(n log n), which is similar to other sorting algorithms.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "25",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Odd-even sort",
+        "description": `Odd-even sort, also known as brick sort, is a simple sorting algorithm that works by iterating through a list of elements and comparing pairs of elements that are next to each other. The algorithm begins by comparing the first and second elements in the list. If the first element is larger than the second, they are swapped. The algorithm then moves on to the next pair of elements (the third and fourth elements) and repeats the process. This continues until all of the pairs have been compared and any necessary swaps have been made.\n
+Once the first pass is complete, the algorithm begins a second pass, this time comparing elements that are two positions apart (e.g. the first and third elements, the second and fourth elements, etc.). This process is repeated until the list is fully sorted.\n
+One of the key advantages of odd-even sort is that it can be implemented in a parallel fashion, allowing it to take advantage of multiple processors or cores. This makes it a good choice for sorting large lists or for situations where speed is a concern. However, it is generally not as efficient as other sorting algorithms, such as quicksort or merge sort, and may not be the best choice for small lists or when the goal is to minimize the number of comparisons or swaps.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "26",
+        "animationScript": "notAnimated"
+    },
+    {
+        "title": "Timsort",
+        "description": `Timsort is a sorting algorithm that is efficient for both small and large lists. It was developed by Tim Peters in 2002 and is now used as the default sorting algorithm in the Python programming language.\n
+Timsort works by breaking the list of elements to be sorted into smaller chunks, known as "runs," and then merging these runs together in a specific order to create a fully sorted list. To create the runs, Timsort uses a hybrid approach that combines elements of both insertion sort and merge sort. It begins by identifying already sorted sublists within the larger list and then uses these sublists as the basis for the runs. It then merges these runs together using a technique similar to merge sort.\n
+One of the key benefits of Timsort is that it is highly efficient when sorting lists that are partially sorted or have some known structure. It is also efficient when sorting lists that contain a mix of large and small elements, as it can take advantage of the natural order within the list to minimize the number of comparisons and swaps required. Additionally, Timsort is a stable sort, meaning that it preserves the original order of elements that compare as equal.\n
+Overall, Timsort is a reliable and efficient sorting algorithm that is well-suited to a wide range of applications. It is widely used in programming languages and libraries, and has been shown to perform well in a variety of different settings.`,
+        "sourceCodes": [["Javascript", "javascript", `function quicksort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+
+    const pivot = array[0];
+    const left = [];
+    const right = [];
+
+    for (let i = 1; i < array.length; i++) {
+        if (array[i] < pivot) {
+        left.push(array[i]);
+        } else {
+        right.push(array[i]);
+        }
+    }
+
+    return [...quicksort(left), pivot, ...quicksort(right)];
+}
+
+const sortedArray = quicksort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `class QuickSort {
+    fun quicksort(array: List<Int>): List<Int> {
+        if (array.size <= 1) {
+            return array
+        }
+
+        val pivot = array[0]
+        val left = mutableListOf<Int>()
+        val right = mutableListOf<Int>()
+
+        for (i in 1 until array.size) {
+            if (array[i] < pivot) {
+                left.add(array[i])
+            } else {
+                right.add(array[i])
+            }
+        }
+
+        return quicksort(left) + pivot + quicksort(right)
+    }
+}
+
+fun main() {
+    val sortedArray = QuickSort().quicksort(listOf(5, 2, 1, 4, 3))
+    println(sortedArray) // [1, 2, 3, 4, 5]
+}`], ["Java", "java", `import java.util.List;
+import java.util.ArrayList;
+
+public class QuickSort {
+    public static List<Integer> quicksort(List<Integer> array) {
+        if (array.size() <= 1) {
+            return array;
+        }
+
+        int pivot = array.get(0);
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+
+        for (int i = 1; i < array.size(); i++) {
+            if (array.get(i) < pivot) {
+                left.add(array.get(i));
+            } else {
+                right.add(array.get(i));
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+        result.addAll(quicksort(left));
+        result.add(pivot);
+        result.addAll(quicksort(right));
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Integer> sortedArray = quicksort(List.of(5, 2, 1, 4, 3));
+        System.out.println(sortedArray); // [1, 2, 3, 4, 5]
+    }
+}`], ["Python", "phython", `def quicksort(array):
+    if len(array) <= 1:
+        return array
+
+    pivot = array[0]
+    left = []
+    right = []
+
+    for i in range(1, len(array)):
+        if array[i] < pivot:
+            left.append(array[i])
+        else:
+            right.append(array[i])
+
+    return quicksort(left) + [pivot] + quicksort(right)
+
+sorted_array = quicksort([5, 2, 1, 4, 3])
+print(sorted_array) # [1, 2, 3, 4, 5]`], ["C#", "csharp", `using System.Collections.Generic;
+
+public class QuickSort {
+    public static List<int> Quicksort(List<int> array) {
+        if (array.Count <= 1) {
+            return array;
+        }
+
+        int pivot = array[0];
+        var left = new List<int>();
+        var right = new List<int>();
+
+        for (int i = 1; i < array.Count; i++) {
+            if (array[i] < pivot)
+            {
+                left.Add(array[i]);
+            }
+            else {
+                right.Add(array[i]);
+            }
+        }
+
+        var result = new List<int>();
+        result.AddRange(Quicksort(left));
+        result.Add(pivot);
+        result.AddRange(Quicksort(right));
+
+        return result;
+    }
+
+    static void Main(string[] args) {
+        var sortedArray = Quicksort(new List<int> { 5, 2, 1, 4, 3 });
+        System.Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+    }
+}`], ["Rust", "rust", `fn quicksort(array: Vec<i32>) -> Vec<i32> {
+    if array.len() <= 1 {
+        return array;
+    }
+
+    let pivot = array[0];
+    let mut left = Vec::new();
+    let mut right = Vec::new();
+
+    for i in 1..array.len() {
+        if array[i] < pivot {
+            left.push(array[i]);
+        } else {
+            right.push(array[i]);
+        }
+    }
+
+    [quicksort(left), vec![pivot], quicksort(right)].concat()
+}
+
+fn main() {
+    let sorted_array = quicksort(vec![5, 2, 1, 4, 3]);
+    println!("{:?}", sorted_array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub quicksort {
+    my @array = @_;
+    return @array if @array < 2;
+
+    my $pivot = pop @array;
+    my @lesser = grep { $_ < $pivot } @array;
+    my @greater = grep { $_ >= $pivot } @array;
+
+    return (quicksort(@lesser), $pivot, quicksort(@greater));
+}
+
+my @sorted = quicksort(5, 2, 1, 4, 3);
+print "@sorted\n";  # prints "1 2 3 4 5"`]],
+        "timeAndSpace": ["n", "n^2", "nlog(n)", "nlog(n)"],
+        "id": "27",
+        "animationScript": "notAnimated"
     }];
 
 export default articles;

@@ -22,7 +22,7 @@ let artTitleObjSlRefLen:number;
 let articleMatchRef:number;
 
 for(let i=0;i<articles.length;i++) {
-    let currentArticleTitle = articles[i].title.toLowerCase().replace(' ', '');
+    let currentArticleTitle = articles[i].title.toLowerCase().replaceAll(' ', '');
     let currentArticleTitleSliced = currentArticleTitle.slice(0,2);
 
     if(articleTitlesObj.hasOwnProperty(currentArticleTitleSliced)) {
@@ -64,7 +64,7 @@ const Articles = () => {
                                                             shouldSearch = true;
                                                         } catch (error) { /*TODO: Cleanup userinput so no errors are thrown - Not important, everything works great without a catch*/ 
                                                             shouldSearch = true;
-                                                            //console.log(error);
+                                                            console.log(error);
                                                         }
                                                     }, 500);
                                                 }
