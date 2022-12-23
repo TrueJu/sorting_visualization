@@ -208,10 +208,10 @@ const Card = ({ img, title="default", content="default", animated=false }:CardPr
         <div className="w-24 h-20 -ml-6 -mt-6 -mb-[56px] blur-2xl opacity-10 bg-blue-gradient"></div>
         <img src={img} alt="Sorting Icon" className="w-12 absolute" />
         <h2 className="ml-24 text-2xl cursor-pointer text-blue-gradient font-bold break-words">{title}</h2>
-        {/* <p className="text-green-500 w-full font-bold text-[8px] -mb-[28px] text-right -translate-y-[98px] translate-x-8 rotate-[30deg]">{animated ? "Animated" : ""}</p> */}
         <p className="mt-9 cursor-pointer">{content}</p>
+        {animated ? <img src="../src/assets/animated.png?v=2" alt="" className="animationIcon ml-[100%] -mb-[36px] w-9 h-auto translate-y-[25px] -translate-x-[100%]" title="Animated" /> : null}
         <hr className="card-hr" />
         <button className="pt-3 group-hover:font-bold group-hover:ml-[50%] group-hover:-translate-x-1/2 transition-all ease-out duration-500">Check it out!</button>
-    </div>;
+    </div>
 
 export default Explore

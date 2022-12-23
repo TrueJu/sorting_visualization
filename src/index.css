@@ -135,6 +135,9 @@ img {
   transform: translateX(-24px);
   margin-top: 20px;
 }
+.animationIcon {
+  filter: invert(30%) sepia(52%) saturate(589%) hue-rotate(63deg) brightness(99%) contrast(82%);
+}
 
 .data-blocks {
   background-color: #00b862;
