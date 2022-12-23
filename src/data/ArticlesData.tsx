@@ -540,7 +540,7 @@ my $sorted_array = merge_sort([5, 2, 1, 4, 3]);
 print join(', ', @$sorted_array), "\\n"; # 1, 2, 3, 4, 5`]],
         "timeAndSpace": ["n", "n*log(n)", "n*log(n)", "n*log(n)"],
         "id": "3",
-        "animationScript": "mergesort"
+        "animationScript": "notAnimated"
     },
     {
         "title": "Selection sort",
