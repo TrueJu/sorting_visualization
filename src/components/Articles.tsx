@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import articles from '../data/ArticlesData';
 import Highlight from 'react-highlight';
-import {updateAnimation, changeUpdateAnimation, bubbleSort, quickSort} from './algorithms/import-handler';
+import {updateAnimation, changeUpdateAnimation, bubbleSort, quickSort, mergeSort} from './algorithms/import-handler';
 
 type articleProps = {
     title: string,
@@ -124,7 +124,7 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
 
     return(
         <div className="  w-full" id={id}>
-            <h2 className={`text-3xl cursor-pointer text-${Math.floor(Math.random() * (2 - 1 + 1) + 1) == 1 ? 'red' : 'blue'}-gradient font-bold w-fit mb-5`}>{title}</h2>
+            <h2 className={`text-3xl cursor-pointer text-${Math.floor(Math.random() * (2 - 1 + 1) + 1) == 1 ? 'red' : 'blue'}-gradient font-bold w-fit mb-5 cursor-default`}>{title}</h2>
             <p className="whitespace-pre-wrap">
                 {description}
             </p><br/>
@@ -151,6 +151,12 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
 
                         toggleRunButton();
                         quickSort();
+                        break;
+                    case "mergesort":   //In work
+                        if(updateAnimation) {updateAnimationValues()}
+
+                        toggleRunButton();
+                        mergeSort();
                         break;
                     default:
                         console.error("error");

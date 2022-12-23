@@ -292,113 +292,253 @@ print "@sorted\n";  # prints "1 2 3 4 5"`]],
         "description": `Merge sort is an efficient, general-purpose, comparison-based sorting algorithm. It works by dividing an array into two halves, sorting each half, and then merging them back together. This process is repeated until the entire array is sorted.\n
 One of the key advantages of merge sort is that it is a stable sort, meaning that it preserves the relative order of elements with equal keys. It is also a divide and conquer algorithm, which means that it breaks down a problem into smaller subproblems, solves them, and then combines the solutions to the subproblems to solve the original problem. This makes it highly efficient and scalable.\n
 Overall, merge sort is a reliable and efficient sorting algorithm that is well-suited for a wide range of applications.`,
-        "sourceCodes": [["Javascript", "javascript", `function bubbleSort(arr) {
-    for (let i = 0; i < arr.length; i++) {
-        for (let j = 0; j < arr.length - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                // Swap the elements
-                let temp = arr[j];
-                arr[j] = arr[j + 1];
-                arr[j + 1] = temp;
-            }
+        "sourceCodes": [["Javascript", "javascript", `function mergeSort(array) {
+    if (array.length <= 1) {
+        return array;
+    }
+    
+    const middle = Math.floor(array.length / 2);
+    const left = array.slice(0, middle);
+    const right = array.slice(middle);
+    
+    return merge(mergeSort(left), mergeSort(right));
+}
+    
+function merge(left, right) {
+    const result = [];
+    let leftIndex = 0;
+    let rightIndex = 0;
+    
+    while (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result.push(left[leftIndex]);
+            leftIndex++;
+        } else {
+            result.push(right[rightIndex]);
+            rightIndex++;
         }
     }
-    return arr;
+    
+    return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+}
+          
+const sortedArray = mergeSort([5, 2, 1, 4, 3]);
+console.log(sortedArray); // [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `fun mergeSort(array: IntArray): IntArray {
+    if (array.size <= 1) {
+        return array
+    }
+
+    val middle = array.size / 2
+    val left = array.copyOfRange(0, middle)
+    val right = array.copyOfRange(middle, array.size)
+
+    return merge(mergeSort(left), mergeSort(right))
 }
 
-let sortedArray = bubbleSort([5, 2, 1, 4, 3]);
-console.log(sortedArray);  // Output: [1, 2, 3, 4, 5]`], ["Kotlin", "kotlin", `fun bubbleSort(arr: IntArray): IntArray {
-    for (i in 0 until arr.size) {
-        for (j in 0 until arr.size - i - 1) {
-            if (arr[j] > arr[j + 1]) {
-                // Swap the elements
-                val temp = arr[j]
-                arr[j] = arr[j + 1]
-                arr[j + 1] = temp
-            }
+fun merge(left: IntArray, right: IntArray): IntArray {
+    val result = IntArray(left.size + right.size)
+    var leftIndex = 0
+    var rightIndex = 0
+    var resultIndex = 0
+
+    while (leftIndex < left.size && rightIndex < right.size) {
+        if (left[leftIndex] < right[rightIndex]) {
+            result[resultIndex++] = left[leftIndex++]
+        } else {
+            result[resultIndex++] = right[rightIndex++]
         }
     }
-    return arr
+
+    while (leftIndex < left.size) {
+        result[resultIndex++] = left[leftIndex++]
+    }
+
+    while (rightIndex < right.size) {
+        result[resultIndex++] = right[rightIndex++]
+    }
+
+    return result
 }
 
-fun main() {
-    val sortedArray = bubbleSort(intArrayOf(5, 2, 1, 4, 3))
-    println(sortedArray.joinToString())  // Output: [1, 2, 3, 4, 5]
+fun main(args: Array<String>) {
+    val sortedArray = mergeSort(intArrayOf(5, 2, 1, 4, 3))
+    println(sortedArray.joinToString()) // [1, 2, 3, 4, 5]
 }`], ["Java", "java", `import java.util.Arrays;
 
-public class BubbleSort {
-    public static void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // Swap the elements
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
+public class MergeSort {
+    public static void main(String[] args) {
+        int[] array = {5, 2, 1, 3, 4};
+        int[] sortedArray = mergeSort(array);
+        System.out.println(Arrays.toString(sortedArray)); // [1, 2, 3, 4, 5]
     }
 
-    public static void main(String[] args) {
-        int[] arr = {5, 2, 1, 4, 3};
-        bubbleSort(arr);
-        System.out.println(Arrays.toString(arr));  // Output: [1, 2, 3, 4, 5]
+    public static int[] mergeSort(int[] array) {
+        if (array.length <= 1) {
+            return array;
+        }
+
+        int middle = array.length / 2;
+        int[] left = Arrays.copyOfRange(array, 0, middle);
+        int[] right = Arrays.copyOfRange(array, middle, array.length);
+
+        return merge(mergeSort(left), mergeSort(right));
+    }
+
+    public static int[] merge(int[] left, int[] right) {
+        int[] result = new int[left.length + right.length];
+        int leftIndex = 0;
+        int rightIndex = 0;
+        int resultIndex = 0;
+
+        while (leftIndex < left.length && rightIndex < right.length) {
+            if (left[leftIndex] < right[rightIndex]) {
+                result[resultIndex++] = left[leftIndex++];
+            } else {
+                result[resultIndex++] = right[rightIndex++];
+            }
+        }
+
+        while (leftIndex < left.length) {
+            result[resultIndex++] = left[leftIndex++];
+        }
+
+        while (rightIndex < right.length) {
+            result[resultIndex++] = right[rightIndex++];
+        }
+
+        return result;
     }
 }`], ["C#", "csharp", `using System;
 
-public class Bubblesort {
-    static void Main(string[] args) {
-        int[] arr = { 5, 2, 1, 4, 3 };
-        bubbleSort(arr);
-        Console.WriteLine(string.Join(", ", arr));  // Output: 1, 2, 3, 4, 5
-    }
+namespace MergeSort {
+    class Program {
+        static void Main(string[] args) {
+            int[] array = { 5, 2, 1, 4, 3 };
+            int[] sortedArray = MergeSort(array);
+            Console.WriteLine(string.Join(", ", sortedArray)); // 1, 2, 3, 4, 5
+        }
 
-    static void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.Length; i++) {
-            for (int j = 0; j < arr.Length - i - 1; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    // Swap the elements
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
+        static int[] MergeSort(int[] array) {
+            if (array.Length <= 1) {
+                return array;
+            }
+
+            int middle = array.Length / 2;
+            int[] left = new int[middle];
+            Array.Copy(array, 0, left, 0, middle);
+            int[] right = new int[array.Length - middle];
+            Array.Copy(array, middle, right, 0, array.Length - middle);
+
+            return Merge(MergeSort(left), MergeSort(right));
+        }
+
+        static int[] Merge(int[] left, int[] right) {
+            int[] result = new int[left.Length + right.Length];
+            int leftIndex = 0;
+            int rightIndex = 0;
+            int resultIndex = 0;
+
+            while (leftIndex < left.Length && rightIndex < right.Length) {
+                if (left[leftIndex] < right[rightIndex]) {
+                    result[resultIndex++] = left[leftIndex++];
+                }
+                else {
+                    result[resultIndex++] = right[rightIndex++];
                 }
             }
+
+            while (leftIndex < left.Length) {
+                result[resultIndex++] = left[leftIndex++];
+            }
+
+            while (rightIndex < right.Length) {
+                result[resultIndex++] = right[rightIndex++];
+            }
+
+            return result;
         }
     }
-}`], ["Rust", "rust", `fn bubble_sort(arr: &mut [i32]) {
-    for i in 0..arr.len() {
-        for j in 0..arr.len() - i - 1 {
-            if arr[j] > arr[j + 1] {
-                // Swap the elements
-                arr.swap(j, j + 1);
-            }
+}`], ["Rust", "rust", `fn merge_sort(array: &mut [i32]) {
+    if array.len() > 1 {
+        let middle = array.len() / 2;
+        merge_sort(&mut array[..middle]);
+        merge_sort(&mut array[middle..]);
+        merge(array);
+    }
+}
+
+fn merge(array: &mut [i32]) {
+    let left = array[..array.len() / 2].to_vec();
+    let right = array[array.len() / 2..].to_vec();
+
+    let mut left_index = 0;
+    let mut right_index = 0;
+    let mut result_index = 0;
+
+    while left_index < left.len() && right_index < right.len() {
+        if left[left_index] < right[right_index] {
+            array[result_index] = left[left_index];
+            left_index += 1;
+        } else {
+            array[result_index] = right[right_index];
+            right_index += 1;
         }
+        result_index += 1;
+    }
+
+    while left_index < left.len() {
+        array[result_index] = left[left_index];
+        left_index += 1;
+        result_index += 1;
+    }
+
+    while right_index < right.len() {
+        array[result_index] = right[right_index];
+        right_index += 1;
+        result_index += 1;
     }
 }
 
 fn main() {
-    let mut arr = [5, 2, 1, 4, 3];
-    bubble_sort(&mut arr);
-    println!("{:?}", arr);  // Output: [1, 2, 3, 4, 5]
-}`], ["Perl", "perl", `sub bubble_sort {
-    my @arr = @_;
-    for my $i (0..$#arr) {
-        for my $j (0..$#arr - $i - 1) {
-            if ($arr[$j] > $arr[$j + 1]) {
-                # Swap the elements
-                my $temp = $arr[$j];
-                $arr[$j] = $arr[$j + 1];
-                $arr[$j + 1] = $temp;
-            }
-        }
-    }
-    return @arr;
+    let mut array = [5, 2, 1, 4, 3];
+    merge_sort(&mut array);
+    println!("{:?}", array); // [1, 2, 3, 4, 5]
+}`], ["Perl", "perl", `sub merge_sort {
+    my ($array) = @_;
+
+    return $array if @$array <= 1;
+
+    my $middle = int(@$array / 2);
+    my @left = @{$array}[0..$middle-1];
+    my @right = @{$array}[$middle..$#$array];
+
+    return merge(merge_sort(\@left), merge_sort(\@right));
 }
 
-my @sorted_array = bubble_sort(5, 2, 1, 4, 3);
-print "@sorted_array\\n";  # Output: 1 2 3 4 5`]],
-        "timeAndSpace": ["1", "n^2", "n^2", "n"],
+sub merge {
+    my ($left, $right) = @_;
+
+    my @result;
+    my $left_index = 0;
+    my $right_index = 0;
+
+    while ($left_index < @$left && $right_index < @$right) {
+        if ($left->[$left_index] < $right->[$right_index]) {
+            push @result, $left->[$left_index++];
+        } else {
+            push @result, $right->[$right_index++];
+        }
+    }
+
+    push @result, @{$left}[$left_index..$#$left];
+    push @result, @{$right}[$right_index..$#$right];
+
+    return \@result;
+}
+
+my $sorted_array = merge_sort([5, 2, 1, 4, 3]);
+print join(', ', @$sorted_array), "\\n"; # 1, 2, 3, 4, 5`]],
+        "timeAndSpace": ["n", "n*log(n)", "n*log(n)", "n*log(n)"],
         "id": "3",
         "animationScript": "mergesort"
     },
