@@ -77,6 +77,18 @@ const Articles = () => {
     )
 }
 
+function updateAnimationValues() {
+    const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
+
+    for(let i=0;i<dataBlockElements.length;i++) {
+        dataBlockElements[i].innerHTML = String(Math.floor(Math.random() * (9 - 0 + 1) + 0));
+    }
+}
+function toggleRunButton() {
+    document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
+    document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+}
+
 const Article = ({ title="default", description="...", animationScript, sourceCodes=[], timeAndSpace, id }:articleProps) => {
     const sourceCodeElements = [];
     let windowLastClientWidth:number;
@@ -129,31 +141,15 @@ const Article = ({ title="default", description="...", animationScript, sourceCo
             <button  onClick={() => {
                 switch(animationScript) {
                     case "bubblesort":
-                        document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
-                        document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+                        if(updateAnimation) {updateAnimationValues()}
 
-                        if(updateAnimation) {
-                            const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
-
-                            for(let i=0;i<dataBlockElements.length;i++) {
-                                dataBlockElements[i].innerHTML = String(Math.floor(Math.random() * (9 - 0 + 1) + 0));
-                            }
-                        }
-
+                        toggleRunButton();
                         bubbleSort();
                         break;
                     case "quicksort":
-                        document.getElementById("runAnimationBtn")?.classList.toggle("hidden");
-                        document.getElementById("animationRunningBtn")?.classList.toggle("hidden");
+                        if(updateAnimation) {updateAnimationValues()}
 
-                        if(updateAnimation) {
-                            const dataBlockElements = document.querySelectorAll<HTMLElement>(".data-blocks");
-
-                            for(let i=0;i<dataBlockElements.length;i++) {
-                                dataBlockElements[i].innerHTML = String(Math.floor(Math.random() * (9 - 0 + 1) + 0));
-                            }
-                        }
-
+                        toggleRunButton();
                         quickSort();
                         break;
                     default:
